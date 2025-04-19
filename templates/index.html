@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
+    <link
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+    <title>G3 AI</title>
+    <!-- <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+      }
+
+      .hero-section {
+        padding: 5rem 0;
+        text-align: center;
+      }
+
+      .hero-title {
+        font-weight: 700;
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(90deg, #3a7bd5, #00d2ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero-subtitle {
+        font-size: 1.5rem;
+        color: #495057;
+        margin-bottom: 3rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-button {
+        padding: 0.8rem 2rem;
+        font-size: 1.1rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .feature-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        height: 100%;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: #3a7bd5;
+      }
+
+      .feature-title {
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .demo-image {
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        max-width: 100%;
+        height: auto;
+      }
+
+      .how-it-works {
+        background: white;
+        padding: 5rem 0;
+      }
+
+      .step-number {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background: #3a7bd5;
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        font-weight: bold;
+        margin-right: 15px;
+      }
+    </style> -->
+  </head>
+
+  <body>
+    <!-- Header -->
+    <div class="container">
+      <header
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4"
+      >
+        <div class="col-md-3 mb-2 mb-md-0">
+          <a
+            href="/"
+            class="d-inline-flex link-body-emphasis text-decoration-none"
+          >
+            <svg
+              class="bi"
+              width="40"
+              height="32"
+              role="img"
+              aria-label="Bootstrap"
+            >
+              <use xlink:href="#bootstrap" />
+            </svg>
+          </a>
+        </div>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="nav-link px-2">Home</a></li>
+          <li><a href="#" class="nav-link px-2">Features</a></li>
+          <li><a href="#" class="nav-link px-2">About</a></li>
+          <li><a href="#" class="nav-link px-2">Contact Us</a></li>
+        </ul>
+
+        <div class="col-md-3 text-end">
+          <a
+            role="button"
+            class="btn btn-outline-primary me-2"
+            href="/login"
+          >
+            Login
+          </a>
+          <a role="button" class="btn btn-primary" href="/register">Sign-up</a>
+        </div>
+      </header>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <h1 class="hero-title animate__animated animate__fadeInDown">
+          Your AI-Powered PDF Assistant
+        </h1>
+        <p
+          class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s"
+        >
+          Upload your PDF documents and get instant summaries, ask questions,
+          and extract key information with our intelligent chatbot.
+        </p>
+        <a
+          href="/login"
+          class="btn btn-primary cta-button animate__animated animate__fadeInUp animate__delay-2s"
+        >
+          Get Started - It's Free
+        </a>
+
+        <div class="mt-5 animate__animated animate__fadeIn animate__delay-3s">
+          <img
+            src="{{ url_for('static', filename='img/bootstrap-docs.png') }}"
+            alt="Demo"
+            class="demo-image"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero Page
+    <div class="container my-5">
+        <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center">
+            <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+                <h1 class="display-4 fw-bold lh-1 text-body-emphasis">
+                    JKU G3 PDF Chatbot
+                </h1>
+                <p class="lead">
+                    Quickly design and customize responsive mobile-first sites with
+                    Bootstrap, the world’s most popular front-end open source toolkit,
+                    featuring Sass variables and mixins, responsive grid system,
+                    extensive prebuilt components, and powerful JavaScript plugins.
+                </p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3 align-items-center">
+                    <a class="btn btn-primary btn-lg px-4 me-md-2 fw-bold" href="login.html" role="button">Sign Up</a>
+                    <a class="btn btn-outline-dark btn-md px-4 h-25 " href="login.html" role="button">Log In</a>
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-1 p-0 overflow-visible shadow-lg">
+                <img class="rounded-lg-3 " src="bootstrap-docs.png" alt="" width="720" />
+            </div>
+        </div>
+    </div> -->
+    <!-- Features Section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-file-earmark-text"></i>
+              </div>
+              <h3 class="feature-title">PDF Summarization</h3>
+              <p>
+                Get concise summaries of lengthy documents in seconds, saving
+                you hours of reading time.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-chat-square-text"></i>
+              </div>
+              <h3 class="feature-title">Natural Language Queries</h3>
+              <p>
+                Ask questions about your documents in plain English and get
+                accurate answers instantly.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-collection"></i>
+              </div>
+              <h3 class="feature-title">Multiple Document Analysis</h3>
+              <p>
+                Upload several PDFs at once and get insights across all your
+                documents simultaneously.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Features -->
+    <section class="how-it-works">
+      <div class="container">
+        <h2 class="text-center mb-5">How It Works</h2>
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h4><span class="step-number">1</span>Upload</h4>
+            <p>
+              Upload your PDF documents through our simple interface. No
+              registration required.
+            </p>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h4><span class="step-number">2</span>Process</h4>
+            <p>
+              Our AI analyzes your documents, extracting key information and
+              preparing for your queries.
+            </p>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h4><span class="step-number">3</span>Interact</h4>
+            <p>
+              Ask questions, request summaries, or get insights through our
+              conversational interface.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <div class="container px-4 py-5 align-items-center">
+      <div class="" id="navbarHeader">
+        <div class="container align-items-center">
+          <div class="py-4 text-center">
+            <h4 class="">About</h4>
+            <p class="text-body-secondary">
+              Add some information about the album below, the author, or any
+              other background context. Make it a few sentences long so folks
+              can pick up some informative tidbits. Then, link them off to some
+              social networking sites or contact information.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final CTA -->
+    <section class="py-5 text-center">
+      <div class="container">
+        <h2 class="mb-4">Ready to transform how you work with PDFs?</h2>
+        <a href="/register" class="btn btn-primary btn-lg cta-button">
+          Start Chatting Now
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="container">
+      <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+          <li class="nav-item">
+            <a href="#" class="nav-link px-2 text-body-secondary">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link px-2 text-body-secondary">Feature</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link px-2 text-body-secondary">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link px-2 text-body-secondary">Contact Us</a>
+          </li>
+        </ul>
+        <p class="text-center text-body-secondary">&copy; 2025 Company, Inc</p>
+      </footer>
+    </div>
+    <!--  <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
+      integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+"
+      crossorigin="anonymous"
+    ></script> -->
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+
+  </body>
+</html>

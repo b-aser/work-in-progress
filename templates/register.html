@@ -1,0 +1,156 @@
+{% extends "base.html" %} {% block content %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <h2 class="card-title text-center mb-4">Register</h2>
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    <form id="registrationForm" method="POST" action="{{ url_for('register') }}">
+                        <div class="mb-3">
+                            <label for="fullname" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fullname" name="fullname" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <!--<input type="password" class="form-control" id="password" name="password" required> -->
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password"
+                                    oninput="validatePassword(this.value)">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="" id="passwordErrorMessage"></div>
+                        </div>
+                        <div class="form-group">
+                            <ul>
+                                <li id="minLength"><i class="fas fa-times
+                                                             text-danger"></i> Minimum 8 characters</li>
+                                <li id="uppercase"><i class="fas fa-times
+                                                             text-danger"></i> At least one uppercase
+                                    letter</li>
+                                <li id="lowercase"><i class="fas fa-times
+                                                             text-danger"></i> At least one lowercase
+                                    letter</li>
+                                <li id="symbol"><i class="fas fa-times
+                                                             text-danger"></i>
+                                    At least one symbol (@$!%*?&)
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mb-3">
+                            <label for="repeatpassword" class="form-label">Repeat Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control form-control" id="repeatpassword" name="repeatpassword"
+                                    required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="" id="errorMessage"></div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </form>
+                    <div class="mt-3 text-center">
+                        <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Function to toggle password visibility
+    document.getElementById('togglePassword').addEventListener('click',
+        function () {
+            const passwordInput = document.getElementById('password');
+            const icon = this.querySelector('i');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+
+    function validatePassword(password) {
+        const strongPasswordRegex =
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        const passwordErrorMessage = document.getElementById('passwordErrorMessage');
+
+        // Check each condition and update the corresponding label
+        document.getElementById('minLength').innerHTML =
+            password.length >= 8 ?
+                '<i class="fas fa-check text-success"></i> Minimum 8 characters' :
+                '<i class="fas fa-times text-danger"></i> Minimum 8 characters';
+        document.getElementById('uppercase').innerHTML =
+            /[A-Z]/.test(password) ?
+                '<i class="fas fa-check text-success"></i> At least one uppercase letter' :
+                '<i class="fas fa-times text-danger"></i> At least one uppercase letter';
+        document.getElementById('lowercase').innerHTML =
+            /[a-z]/.test(password) ?
+                '<i class="fas fa-check text-success"></i> At least one lowercase letter' :
+                '<i class="fas fa-times text-danger"></i> At least one lowercase letter';
+        document.getElementById('symbol').innerHTML =
+            /[@$!%*?&]/.test(password) ?
+                '<i class="fas fa-check text-success"></i> At least one symbol (@$!%*?&)' :
+                '<i class="fas fa-times text-danger"></i> At least one symbol (@$!%*?&)';
+
+        // Check overall validity and update the error message
+        // if (strongPasswordRegex.test(password)) {
+        //     passwordErrorMessage.textContent = 'Strong Password';
+        //     passwordErrorMessage.classList.remove('text-danger');
+        //     passwordErrorMessage.classList.add('text-success');
+        // } else {
+        //     passwordErrorMessage.textContent = 'Weak Password';
+        //     passwordErrorMessage.classList.remove('text-success');
+        //     passwordErrorMessage.classList.add('text-danger');
+        // }
+    }
+
+
+    // Function to check Whether both passwords is same or not
+    document.getElementById('repeatpassword').addEventListener('input', function () {
+        const password = document.getElementById('password').value;
+        const repeatPassword = document.getElementById('repeatpassword').value;
+        const errorMessage = document.getElementById('errorMessage');
+        if (password === repeatPassword) {
+            
+            errorMessage.textContent = 'Passwords match';
+            errorMessage.classList.remove('text-danger');
+            errorMessage.classList.add('text-success');
+        } else {
+            errorMessage.textContent = 'Passwords do not match';
+            errorMessage.classList.remove('text-success');
+            errorMessage.classList.add('text-danger');
+        }
+    })
+</script>
+{% endblock %}
